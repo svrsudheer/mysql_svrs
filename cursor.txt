@@ -1,0 +1,38 @@
+
+mysql> delimiter //
+mysql> create procedure list_names(inout all_com_names varchar(15000))
+    -> begin
+    -> declare is_done integer default 0;
+    -> declare s_name varchar(100) default "";
+    -> declare s_cursor  cursor for
+    -> select name from  constituent_financials_csv;
+    -> declare continue handler for not found set is_done = 1;
+    -> open s_cursor;
+    -> get_list:LOOP
+    -> FETCH s_cursor into s_name;
+    -> if is_done = 1 then
+    -> leave get_list;
+    -> end if;
+    -> set all_com_names = concat(s_name,";",all_com_names);
+    -> end loop get_list;
+    -> close s_cursor;
+    -> end //
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> set @all_com_names="";
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call list_names(@all_com_names)//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select @all_com_names //
+
+ select * from constituents_csv where sector= 'health care' into outfile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/constituents_healthcare.csv'
+    -> fields enclosed by '"'
+    -> terminated by ';'
+    -> escaped by '"'
+    -> lines terminated by '\r\n';
+
+
+you can convert csv to excel using data->get data ->from csv->transferm data;
