@@ -1,0 +1,13 @@
+/*create a procedure to know the  sector data using stored prosedure using one parameter*/
+
+CREATE PROCEDURE name  (inputname datatype(50))
+ 
+
+CREATE PROCEDURE Show_sectors_byname  (sectorname varchar(50))
+
+SELECT * from constituent_financials_csv
+where sector = sectorname; 
+
+
+
+call sap.Show_sectors_byname('Information Technology');

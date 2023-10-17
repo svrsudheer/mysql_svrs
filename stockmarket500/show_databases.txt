@@ -1,0 +1,21 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| employeesdb        |
+| information_schema |
+| inter              |
+| md                 |
+| mysql              |
+| mysql_concepts     |
+| new                |
+| performance_schema |
+| sample             |
+| sap                |
+| sys                |
+| test1              |
+| testdb             |
+| testdb_copy        |
+| today              |
++--------------------+

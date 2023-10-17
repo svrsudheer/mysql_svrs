@@ -1,0 +1,24 @@
+/*create a procedure to know the  sector data using stored prosedure using multi parameter*/
+
+--with in parameters
+DELIMITER &&  
+CREATE PROCEDURE Show_sectors_name  (sectorname varchar(50))
+BEGIN  
+    SELECT * from constituent_financials_csv where sector=sectorname;  
+   /* SELECT COUNT(sector) AS Total_Sector FROM constituent_financials_csv;    */
+END &&  
+DELIMITER ; 
+
+
+--with out parameters
+
+DELIMITER &&  
+CREATE PROCEDURE Show_sectors_price (out pricevalue int)
+BEGIN  
+    SELECT sum(price) into pricevalue from  constituent_financials_csv ;  
+       
+END &&  
+DELIMITER ; 
+
+
+

@@ -1,0 +1,27 @@
+/*create a procedure to know the different type of sectors using stored prosedure and distinct key*/ 
+
+CREATE PROCEDURE Show_All_sectors()
+
+SELECT distinct(sector) FROM constituent_financials_csv
+GO ;  
+
+
+
+ 
+mysql> call sap.Show_all_sectors;
++----------------------------+
+| sector                     |
++----------------------------+
+| Industrials                |
+| Health Care                |
+| Information Technology     |
+| Consumer Discretionary     |
+| Utilities                  |
+| Financials                 |
+| Materials                  |
+| Real Estate                |
+| Consumer Staples           |
+| Energy                     |
+| Telecommunication Services |
++----------------------------+
+11 rows in set (0.01 sec)

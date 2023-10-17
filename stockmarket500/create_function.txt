@@ -1,0 +1,19 @@
+mysql> DELIMITER //
+mysql> CREATE FUNCTION `price_level`( price int)
+    -> returns varchar(30)
+    -> deterministic
+    -> begin
+    -> declare range_level varchar(30);
+    -> if price > 150 then
+    -> set range_level ='supper';
+    -> elseif(price < 150 and price > 50)then
+    -> set range_level ='moderate';
+    -> elseif price < 50 then
+    -> set range_level ='below avg';
+    -> END IF;
+    -> RETURN (range_level);
+    -> end //
+Query OK, 0 rows affected (0.19 sec)
+
+mysql>
+mysql> select symbol,name,price,price_level(price) from constituent_financials_csv;

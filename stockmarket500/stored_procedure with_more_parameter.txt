@@ -1,0 +1,14 @@
+/*create a procedure to know the  sector data using stored prosedure using multi parameter*/
+
+CREATE PROCEDURE name  (inputname datatype(50),inputname datatype)
+ 
+
+CREATE PROCEDURE Show_sectors_byname_price  (sectorname varchar(50), price_value int)
+
+SELECT * from constituent_financials_csv
+where sector = sectorname and price=price_value; 
+
+
+call sap.Show_sectors_byname_price('Materials', 153);
+
+

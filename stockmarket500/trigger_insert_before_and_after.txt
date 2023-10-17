@@ -1,0 +1,72 @@
+mysql> DELIMITER //
+mysql> CREATE TRIGGER BEFORE_INSERT_EMPWORKINGHOURS
+    -> BEFORE INSERT ON EMPLOYEE
+    -> FOR EACH ROW
+    -> BEGIN
+    -> IF NEW.WORKING_HOURS<0 THEN SET NEW.WORKING_HOURS=0;
+    -> END IF;
+    -> END //
+Query OK, 0 rows affected (0.22 sec)
+
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    -> ('MARKUS','FORMER','2020-10-8',-8);
+    -> //
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM EMPLOYEE //
++---------+------------+--------------+---------------+
+| name    | occupation | working_date | working_hours |
++---------+------------+--------------+---------------+
+| Robin   | Scientist  | 2020-10-04   | 12            |
+| Warner  | Engineer   | 2020-10-04   | 10            |
+| Peter   | Actor      | 2020-10-04   | 13            |
+| Marco   | Doctor     | 2020-10-04   | 14            |
+| Brayden | Teacher    | 2020-10-04   | 12            |
+| Antonio | Business   | 2020-10-04   | 11            |
+| MARKUS  | FORMER     | 2020-10-08   | 0             |
++---------+------------+--------------+---------------+
+7 rows in set (0.00 sec)
+
+--after trigger
+ delimiter //
+mysql> CREATE TRIGGER after_INSERT_EMPWORKINGHOURS
+    ->
+    -> after INSERT ON EMPLOYEE
+    -> for each row
+    -> BEGIN
+    -> insert into newemployee values(new.name,new.occupation,new.working_date,new.working_hours,CURTIME());
+    -> end //
+Query OK, 0 rows affected (0.18 sec)
+
+
+--inset into employee
+mysql> insert into employee values('alex','doctor','2020-10-10',8);
+
+mysql> select * from employee;
+    -> //
++---------+------------+--------------+---------------+
+| name    | occupation | working_date | working_hours |
++---------+------------+--------------+---------------+
+| Robin   | Scientist  | 2020-10-04   | 12            |
+| Warner  | Engineer   | 2020-10-04   | 10            |
+| Peter   | Actor      | 2020-10-04   | 13            |
+| Marco   | Doctor     | 2020-10-04   | 14            |
+| Brayden | Teacher    | 2020-10-04   | 12            |
+| Antonio | Business   | 2020-10-04   | 11            |
+| MARKUS  | FORMER     | 2020-10-08   | 0             |
+| alex    | doctor     | 2020-10-10   | 8             |
++---------+------------+--------------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from newemployee //
++------+------------+--------------+---------------+--------------+
+| name | occupation | working_date | working_hours | lastinserted |
++------+------------+--------------+---------------+--------------+
+| alex | doctor     | 2020-10-10   | 8             | 19:27:30     |
++------+------------+--------------+---------------+--------------+
+1 row in set (0.00 sec)
+
+
+
+

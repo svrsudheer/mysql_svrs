@@ -1,0 +1,19 @@
+mysql> describe constituent_financials_csv;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| symbol         | char(20)     | YES  |     | NULL    |       |
+| name           | char(100)    | YES  |     | NULL    |       |
+| sector         | char(100)    | YES  |     | NULL    |       |
+| price          | int          | YES  |     | NULL    |       |
+| price_earning  | int          | YES  |     | NULL    |       |
+| dividend_yeald | int          | YES  |     | NULL    |       |
+| earning_sector | int          | YES  |     | NULL    |       |
+| 5_weeklow      | int          | YES  |     | NULL    |       |
+| 52_weekhigh    | int          | YES  |     | NULL    |       |
+| market_cap     | bigint       | YES  |     | NULL    |       |
+| ebitda         | bigint       | YES  |     | NULL    |       |
+| price_sale     | int          | YES  |     | NULL    |       |
+| price_book     | int          | YES  |     | NULL    |       |
+| sec_filling    | varchar(100) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+

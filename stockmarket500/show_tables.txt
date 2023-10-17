@@ -1,0 +1,7 @@
+mysql> show tables;
++----------------------------+
+| Tables_in_sap              |
++----------------------------+
+| constituent_financials_csv |
+| constituents_csv           |
++----------------------------+
