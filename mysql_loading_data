@@ -1,0 +1,45 @@
+--create database
+create sap;
+--create table and column name datatype (size)
+ create table constituents_csv(symble char(8),name varchar(30),sector char(15));
+--load data into table
+mysql> lOAD DATA INFILE'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/constituents_csv.csv'
+    -> into table constituents_csv
+    -> fields terminated by ','
+    -> optionally enclosed by '"'
+    -> lines terminated by '\r\n'
+    -> ignore 1 rows;
+--load data table constituent_financials_csv
+mysql>  
+      create table constituent_financials_csv
+                         (symbol char(20),
+                           name char(100),
+                         sector char(100),
+                          price int,
+			price_earning int,
+			dividend_yeald int,
+			earning_sector int,52_weeklow int,
+			52_weekhigh int,
+			market_cap bigint,
+			ebitda bigint,
+			price_sale int,
+			price_book int,
+			sec_filling varchar(100));
+
+lOAD DATA INFILE'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/constituents-financials_csv.csv'
+    -> into table constituent_financials_csv
+    -> fields terminated by ','
+    -> optionally enclosed by '"'
+    -> lines terminated by '\r\n'
+    -> ignore 1 rows
+    -> ;
+
+mysql>select * from constituents_csv;
+ select * from constituents_csv where sector= 'health care';
+
+ select * from constituents_csv where sector= 'health care' into outfile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/constituents_healthcare.csv'
+    -> fields enclosed by '"'
+    -> terminated by ';'
+    -> escaped by '"'
+    -> lines terminated by '\r\n';
+
